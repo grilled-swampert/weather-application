@@ -1,8 +1,9 @@
-function App() {
+import WeatherApp from './components/WeatherApp';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
+    <div>
+      <WeatherApp />
     </div>
   );
 }
