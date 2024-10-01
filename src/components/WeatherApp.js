@@ -5,7 +5,8 @@ import snowy from "../assets/images/snowy.png";
 import loadingGif from "../assets/images/loading.gif"; // Add a loading GIF
 
 import "./WeatherApp.css";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap"; // Import GSAP
 
 const WeatherApp = () => {
   const [data, setData] = useState({});
@@ -13,6 +14,11 @@ const WeatherApp = () => {
   const [inputLocation, setInputLocation] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
+  
+  // Refs for animated elements
+  const weatherIconRef = useRef(null);
+  const tempRef = useRef(null);
+  const inputRef = useRef(null);
 
   const apiKey = "ce56e0dbff6d15597d2c643c965e76e3";
 
@@ -36,6 +42,18 @@ const WeatherApp = () => {
       setData(weatherData);
       setLocation(weatherData.name);
       setInputLocation(""); // Clear input after search
+
+      // Animate elements after data is fetched
+      gsap.fromTo(
+        weatherIconRef.current, 
+        { opacity: 0, y: -50 }, 
+        { opacity: 1, y: 0, duration: 1, ease: "bounce.out" }
+      );
+      gsap.fromTo(
+        tempRef.current, 
+        { opacity: 0, scale: 0 }, 
+        { opacity: 1, scale: 1, duration: 1, ease: "elastic.out(1, 0.3)" }
+      );
     } catch (err) {
       setError(err.message); // Set error message if request fails
     } finally {
@@ -73,7 +91,14 @@ const WeatherApp = () => {
     }
   };
 
-  const currentDate = new Date().toLocaleDateString();
+  // Animate the input field when loading
+  useEffect(() => {
+    if (loading) {
+      gsap.to(inputRef.current, { scale: 0.9, opacity: 0.7, duration: 0.3 });
+    } else {
+      gsap.to(inputRef.current, { scale: 1, opacity: 1, duration: 0.3 });
+    }
+  }, [loading]);
 
   return (
     <div className={`container ${data.weather ? getBackgroundClass(data.weather[0].main) : ""}`}>
@@ -90,6 +115,7 @@ const WeatherApp = () => {
               value={inputLocation}
               onChange={(e) => setInputLocation(e.target.value)}
               disabled={loading} // Disable input when loading
+              ref={inputRef} // Ref for GSAP animation
             />
             <i
               className={`fa-solid fa-magnifying-glass ${loading ? "disabled" : ""}`}
@@ -108,9 +134,15 @@ const WeatherApp = () => {
             <div className="date"></div>
 
             <div className="weather">
-              <img src={data.weather ? getWeatherImage(data.weather[0].main) : snowy} alt="Weather Icon" />
+              <img
+                src={data.weather ? getWeatherImage(data.weather[0].main) : snowy}
+                alt="Weather Icon"
+                ref={weatherIconRef} // Ref for GSAP animation
+              />
               <div className="weather-type">{data.weather ? data.weather[0].main : "Snowy"}</div>
-              <div className="temp">{data.main ? `${Math.round(data.main.temp)}°C` : "-2°C"}</div>
+              <div className="temp" ref={tempRef}> {/* Ref for GSAP animation */}
+                {data.main ? `${Math.round(data.main.temp)}°C` : "-2°C"}
+              </div>
             </div>
 
             <div className="weather-data">
