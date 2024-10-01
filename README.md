@@ -20,6 +20,7 @@ A modern, responsive weather application built with React and enhanced with GSAP
 - Responsive design for mobile and desktop
 
 ## UI
+![Screenshot 2024-10-01 103030](https://github.com/user-attachments/assets/13ddd081-f9c3-4f2c-b5aa-66ab3ee6939b)
 
 
 ## Technologies Used
@@ -34,7 +35,7 @@ A modern, responsive weather application built with React and enhanced with GSAP
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/weather-app.git
+   git clone https://github.com/grilled-swampert/weather-application
    ```
 
 2. Navigate to the project directory:
