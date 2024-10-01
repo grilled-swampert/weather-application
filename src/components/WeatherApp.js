@@ -105,7 +105,7 @@ const WeatherApp = () => {
         ) : (
           <>
             {error && <div className="error-message">{error}</div>} {/* Display error message if any */}
-            <div className="date">{currentDate}</div>
+            <div className="date"></div>
 
             <div className="weather">
               <img src={data.weather ? getWeatherImage(data.weather[0].main) : snowy} alt="Weather Icon" />
