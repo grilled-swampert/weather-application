@@ -12,9 +12,6 @@ A modern, responsive weather application built with React and enhanced with GSAP
 - [Usage](#usage)
 - [API Key](#api-key)
 - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ## Features
 - Real-time weather data from OpenWeatherMap API
