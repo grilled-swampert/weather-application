@@ -4,11 +4,9 @@ A modern, responsive weather application built with React and enhanced with GSAP
 ## Table of Contents
 
 - [Features](#features)
-- [Demo](#demo)
+- [UI](#UI)
 - [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Installation](#installation)
 - [Usage](#usage)
 - [API Key](#api-key)
 - [Folder Structure](#folder-structure)
