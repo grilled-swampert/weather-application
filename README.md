@@ -30,6 +30,7 @@ A modern, responsive weather application built with React and enhanced with GSAP
 - OpenWeatherMap API
 - CSS3
 
+![Background (2)](https://github.com/user-attachments/assets/25e9cd20-cd1d-4122-8ba7-045eac7ced00)
 
 ### Installation
 
@@ -88,3 +89,5 @@ weather-app/
   ├── package.json
   └── README.md
 ```
+
+
