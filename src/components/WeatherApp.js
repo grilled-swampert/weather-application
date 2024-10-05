@@ -2,25 +2,25 @@ import sunny from "../assets/images/sunny.png";
 import cloudy from "../assets/images/cloudy.png";
 import rainy from "../assets/images/rainy.png";
 import snowy from "../assets/images/snowy.png";
-import loadingGif from "../assets/images/loading.gif"; // Add a loading GIF
+import loadingGif from "../assets/images/loading.gif"; 
 
 import "./WeatherApp.css";
 import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap"; // Import GSAP
+import { gsap } from "gsap"; 
 
 const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("Switzerland");
   const [inputLocation, setInputLocation] = useState("");
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
+
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
   
   // Refs for animated elements
   const weatherIconRef = useRef(null);
   const tempRef = useRef(null);
   const inputRef = useRef(null);
-
-  const apiKey = "ce56e0dbff6d15597d2c643c965e76e3";
 
   const search = async () => {
     if (!inputLocation) {
@@ -29,8 +29,8 @@ const WeatherApp = () => {
     }
 
     try {
-      setLoading(true); // Start loading
-      setError(""); // Reset error before making a new request
+      setLoading(true); 
+      setError(""); 
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputLocation}&appid=${apiKey}&units=metric`;
       const res = await fetch(url);
 
@@ -41,9 +41,8 @@ const WeatherApp = () => {
       const weatherData = await res.json();
       setData(weatherData);
       setLocation(weatherData.name);
-      setInputLocation(""); // Clear input after search
+      setInputLocation(""); 
 
-      // Animate elements after data is fetched
       gsap.fromTo(
         weatherIconRef.current, 
         { opacity: 0, y: -50 }, 
@@ -55,9 +54,9 @@ const WeatherApp = () => {
         { opacity: 1, scale: 1, duration: 1, ease: "elastic.out(1, 0.3)" }
       );
     } catch (err) {
-      setError(err.message); // Set error message if request fails
+      setError(err.message); 
     } finally {
-      setLoading(false); // Stop loading after fetching data
+      setLoading(false); 
     }
   };
 
